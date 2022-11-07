@@ -1,6 +1,4 @@
 import { TbUser } from './tbuser';
-import { ViewUserBrand } from './viewuserbrand';
-import { ViewUserMenu } from './viewusermenu';
 
 export class UserChangePasswordResponse {
     requestId: string;

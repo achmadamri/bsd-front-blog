@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('DMS - User Profile');
+    this.titleService.setTitle('Administrator - User Profile');
 
     this.tbUser = JSON.parse(localStorage.getItem('user'));
     

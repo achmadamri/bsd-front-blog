@@ -20,7 +20,7 @@
                 <div class="col-md-6">                  
                   <mat-form-field>
                     <mat-label>Role</mat-label>
-                    <mat-select [(ngModel)]="userAddRequest.tbUser.tbuRole" name="tbuRole" (selectionChange)="roleChange()">
+                    <mat-select [(ngModel)]="userAddRequest.tbUser.tbuRole" name="tbuRole">
                         <mat-option *ngFor="let role of role" [value]="role">
                           {{role}}
                         </mat-option>
@@ -82,49 +82,6 @@
                   <div class="card">
                     <div class="card-header card-header-warning">
                       <h4 class="card-title">Market</h4>
-                    </div>
-                    <div class="card-body">
-                      <table class="table table-hover">
-                        <thead class="text-warning">
-                          <tr>
-                            <th scope="col">Market</th>
-                            <th scope="col" style="cursor: pointer;" (click)="checkMarketAll();">Access</th>
-                          </tr>
-                        </thead>
-                        <tbody *ngIf="userAddRequest.lstTbMarket[0].tbmId != undefined">
-                          <tr *ngFor="let tbMarket of userAddRequest.lstTbMarket; let i = index">
-                            <td>{{tbMarket.tbmMarket}}</td>
-                            <td>
-                              <mat-checkbox [(ngModel)]="tbMarket.check" name="checkMarket{{i}}"></mat-checkbox>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>                                          
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-header card-header-warning">
-                      <h4 class="card-title">Brand</h4>
-                    </div>
-                    <div class="card-body">
-                      <table class="table table-hover">
-                        <thead class="text-warning">
-                          <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col" style="cursor: pointer;" (click)="checkBrandAll();">Access</th>
-                          </tr>
-                        </thead>
-                        <tbody *ngIf="userAddRequest.lstTbBrand[0].tbbBrandId != undefined">
-                          <tr *ngFor="let tbBrand of userAddRequest.lstTbBrand; let i = index">
-                            <td>{{tbBrand.tbbBrand}}</td>
-                            <td>
-                              <mat-checkbox [(ngModel)]="tbBrand.check" name="checkBrand{{i}}"></mat-checkbox>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>                                          
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthGenerateResponse } from './services/auth/authgenerateresponse';
 import * as moment from 'moment';
-import { HttpHeaders } from '@angular/common/http';
 import { UserGetResponse } from './services/user/usergetresponse';
 
 declare let $: any;
@@ -35,7 +34,6 @@ export class Util {
     setSessionUser(userGetResponse: UserGetResponse) {
       localStorage.setItem('user', JSON.stringify(userGetResponse.tbUser));
       localStorage.setItem('menu', JSON.stringify(userGetResponse.lstViewUserMenu));
-      localStorage.setItem('brand', JSON.stringify(userGetResponse.lstViewUserBrand));
     }
 
     logout() {

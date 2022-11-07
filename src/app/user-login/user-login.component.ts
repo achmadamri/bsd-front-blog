@@ -31,7 +31,7 @@ export class UserLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('DMS - Login');
+    this.titleService.setTitle('Administrator - Login');
     this.setCurrentLocation();
   }
 

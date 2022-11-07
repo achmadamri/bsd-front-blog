@@ -24,7 +24,7 @@ import { UserChangePasswordResponse } from './userchangepasswordresponse';
 })
 export class UserService {
   util: Util = new Util();
-  apiUrl = isDevMode() ? 'http://localhost:2081/user' : 'https://dms.id-trec.com/2081/user';
+  apiUrl = isDevMode() ? 'http://localhost:2081/user' : 'https://domain.com/2081/user';
 
   constructor(private httpClient: HttpClient) { }
 

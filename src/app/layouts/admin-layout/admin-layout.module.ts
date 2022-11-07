@@ -22,7 +22,7 @@ import { AutoFocusDirective } from 'app/autofocus.directive';
 import { UserComponent } from 'app/user/user.component';
 import { UserAddComponent } from 'app/user-add/user-add.component';
 import { UserEditComponent } from 'app/user-edit/user-edit.component';
-import { DepartmentsComponent } from 'app/departments/departments.component';
+import { EntryComponent } from 'app/entry/entry.component';
 
 @NgModule({
   imports: [
@@ -52,7 +52,7 @@ import { DepartmentsComponent } from 'app/departments/departments.component';
     UserComponent,
     UserLoginComponent,
     AutoFocusDirective,
-    DepartmentsComponent,
+    EntryComponent,
   ]
 })
 
