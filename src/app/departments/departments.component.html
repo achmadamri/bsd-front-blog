@@ -1,0 +1,62 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">User</h4>
+            <p class="card-category">List of user</p>
+          </div>
+          <div class="card-body table-responsive">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field>
+                  <input matInput placeholder="Email" type="text" [(ngModel)]="tbuEmail" (keyup.enter)="getUserList(null)">
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="First Name" type="text" [(ngModel)]="tbuFirstname" (keyup.enter)="getUserList(null)">
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Last Name" type="text" [(ngModel)]="tbuLastname" (keyup.enter)="getUserList(null)">
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="getPage($event)" [disabled]="clicked"></mat-paginator>
+            <table class="table table-hover">
+              <thead class="text-warning">
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Last Login</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="this.getUserListResponse.lstTbUser[0].tbuId != undefined">
+                <tr *ngFor="let tbUser of getUserListResponse.lstTbUser; let i = index">
+                  <td>{{i + 1 + (pageSize * pageIndex)}}</td>                  
+                  <td>{{tbUser.tbuEmail}}</td>
+                  <td>{{tbUser.tbuRole}}</td>
+                  <td>{{tbUser.tbuFirstname}}</td>
+                  <td>{{tbUser.tbuLastname}}</td>
+                  <td>{{tbUser.tbuUpdateDate | date: 'M/dd/yyyy HH:mm:ss'}}</td>
+                  <td>
+                    <input type="button" style="padding: 2px 15px;" class="btn btn-warning" value="view" [disabled]="clicked" [routerLink]="['/user-edit', tbUser.tbuId]"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="getPage($event)" [disabled]="clicked"></mat-paginator>
+            <input type="button" class="btn btn-success pull-right" value="Add" [disabled]="clicked" (click)="UserAdd();" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

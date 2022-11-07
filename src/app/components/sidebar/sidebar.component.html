@@ -1,0 +1,28 @@
+<div class="logo">
+    <a href="dms" class="simple-text">
+        <div class="logo-img">
+            <img src="./assets/img/angular.png"/>
+        </div>
+    </a>    
+</div>
+<div *ngIf="tbUser.tbuEmail != undefined" class="logo" style="cursor: pointer; text-align: center; font-size: 14px; " (click)="userProfile();">
+    Profile : {{tbUser.tbuEmail}}
+    <br>
+    Role : {{tbUser.tbuRole}}
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav" *ngIf="menu==true">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" (click)="logout();">
+                <i class="material-icons">close</i>
+                <p>Logout</p>
+            </a>
+        </li>
+    </ul>
+</div>
