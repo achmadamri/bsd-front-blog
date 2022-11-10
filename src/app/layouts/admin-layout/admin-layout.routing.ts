@@ -10,6 +10,8 @@ import { UserEditComponent } from 'app/user-edit/user-edit.component';
 import { EntryComponent } from 'app/entry/entry.component';
 import { EntryAddComponent } from 'app/entry-add/entry-add.component';
 import { EntryEditComponent } from 'app/entry-edit/entry-edit.component';
+import { EntryViewComponent } from 'app/entry-view/entry-view.component';
+import { EntryPostComponent } from 'app/entry-post/entry-post.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                       component: DashboardComponent, canActivate: [AuthGuard] },
@@ -19,7 +21,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-edit/:tbuId',                component: UserEditComponent, canActivate: [AuthGuard] },
     { path: 'user-edit',                       component: UserEditComponent, canActivate: [AuthGuard] },
     { path: 'user-login',                      component: UserLoginComponent },
-    { path: 'entry',                           component: EntryComponent },
+    { path: 'entry',                           component: EntryComponent, canActivate: [AuthGuard] },
+    { path: 'entry-view',                      component: EntryViewComponent },
     { path: 'entry-add',                       component: EntryAddComponent, canActivate: [AuthGuard] },
     { path: 'entry-edit/:tbeId',               component: EntryEditComponent, canActivate: [AuthGuard] },
+    { path: 'entry-post/:tbeId',               component: EntryPostComponent },
 ];

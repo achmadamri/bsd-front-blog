@@ -1,7 +1,7 @@
 import { TbComment } from './tbcomment';
 import { TbEntry } from './tbentry';
 
-export class GetEntryResponse {
+export class EntryCommentResponse {
     requestId: string;
     requestDate: string;
     responseId: string;
@@ -10,5 +10,5 @@ export class GetEntryResponse {
     error: string;
     message: string;
     tbEntry: TbEntry = new TbEntry();
-    lstTbComment: TbComment[] = Array(new TbComment());
+    tbComment: TbComment = new TbComment();
 }

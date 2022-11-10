@@ -12,6 +12,8 @@ import { EntryEditRequest } from './entryeditrequest';
 import { EntryEditResponse } from './entryeditresponse';
 import { EntryDeleteRequest } from './entrydeleterequest';
 import { EntryDeleteResponse } from './entrydeleteresponse';
+import { EntryCommentRequest } from './entrycommentrequest';
+import { EntryCommentResponse } from './entrycommentresponse';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +43,26 @@ export class EntryService {
 
     return this.httpClient.get<GetEntryListResponse>(`${this.apiUrl}/getentrylist`, { headers, params });
   }
+
+  getEntryView(tbeTitle: string, tbeChunk: string, tbeContent: string, length: number, pageSize: number, pageIndex: number, getEntryListRequest: GetEntryListRequest): Observable<GetEntryListResponse> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    const params = new HttpParams()
+      .set('requestId', this.util.randomString(10))
+      .set('requestDate', ((new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000))).toISOString().slice(0, -1)) + '000')
+      .set('email', localStorage.getItem('email'))
+      .set('token', localStorage.getItem('token'))
+      .set('length', length.toString())
+      .set('pageSize', pageSize.toString())
+      .set('pageIndex', pageIndex.toString())
+      .set('tbeTitle', tbeTitle)
+      .set('tbeChunk', tbeChunk)
+      .set('tbeContent', tbeContent)
+      ;
+
+    return this.httpClient.get<GetEntryListResponse>(`${this.apiUrl}/getentryview`, { headers, params });
+  }
   
   postEntryAdd(entryAddRequest: EntryAddRequest): Observable<EntryAddResponse> {
     const headers = new HttpHeaders()
@@ -69,6 +91,21 @@ export class EntryService {
     return this.httpClient.get<GetEntryResponse>(`${this.apiUrl}/getentry`, { headers, params });
   }
 
+  getEntryPost(getEntryRequest: GetEntryRequest): Observable<GetEntryResponse> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    const params = new HttpParams()
+      .set('requestId', this.util.randomString(10))
+      .set('requestDate', ((new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000))).toISOString().slice(0, -1)) + '000')
+      .set('email', localStorage.getItem('email'))
+      .set('token', localStorage.getItem('token'))
+      .set('tbeId', getEntryRequest.tbeId)
+      ;
+
+    return this.httpClient.get<GetEntryResponse>(`${this.apiUrl}/getentrypost`, { headers, params });
+  }
+
   postEntryEdit(entryEditRequest: EntryEditRequest): Observable<EntryAddResponse> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
@@ -79,6 +116,18 @@ export class EntryService {
     entryEditRequest.requestDate = ((new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000))).toISOString().slice(0, -1)) + '000';
 
     return this.httpClient.post<EntryEditResponse>(`${this.apiUrl}/postentryedit`, entryEditRequest, { headers });
+  }
+
+  postEntryComment(entryCommentRequest: EntryCommentRequest): Observable<EntryCommentResponse> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+
+    entryCommentRequest.email = localStorage.getItem('email');
+    entryCommentRequest.token = localStorage.getItem('token');
+    entryCommentRequest.requestId = this.util.randomString(10);
+    entryCommentRequest.requestDate = ((new Date(Date.now() - ((new Date()).getTimezoneOffset() * 60000))).toISOString().slice(0, -1)) + '000';
+
+    return this.httpClient.post<EntryCommentResponse>(`${this.apiUrl}/postentrycomment`, entryCommentRequest, { headers });
   }
 
   postEntryDelete(entryDeleteRequest: EntryDeleteRequest): Observable<EntryDeleteResponse> {

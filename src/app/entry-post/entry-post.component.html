@@ -1,0 +1,53 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  {{entryEditRequest.tbEntry.tbeTitle}}
+                </div>
+              </div>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <p innerHTML={{entryEditRequest.tbEntry.tbeContent}}></p>                  
+                </div>
+              </div>
+              <br>
+              <br>
+              <table class="table table-hover">
+                <tbody *ngIf="this.getEntryResponse.lstTbComment[0].tbcId != undefined">
+                  <tr *ngFor="let tbComment of getEntryResponse.lstTbComment; let i = index">
+                    <td>
+                      {{tbComment.tbcCreateDate | date: 'M/dd/yyyy HH:mm:ss'}}
+                      <br>
+                      {{tbComment.tbcContent}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Comment" type="text" [(ngModel)]="entryCommentRequest.tbComment.tbcContent" name="tbcContent">
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <br>
+              <button mat-raised-button type="button" class="btn btn-success pull-right" [disabled]="clicked" (click)="postComment();">Post Comment</button>
+              <button mat-raised-button type="button" class="btn btn-success pull-right" [disabled]="clicked" (click)="back();">Back</button>
+              <div class="clearfix"></div>              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,8 @@ import { EntryComponent } from 'app/entry/entry.component';
 import { EntryAddComponent } from 'app/entry-add/entry-add.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EntryEditComponent } from 'app/entry-edit/entry-edit.component';
+import { EntryViewComponent } from 'app/entry-view/entry-view.component';
+import { EntryPostComponent } from 'app/entry-post/entry-post.component';
 
 @NgModule({
   imports: [
@@ -59,6 +61,8 @@ import { EntryEditComponent } from 'app/entry-edit/entry-edit.component';
     UserLoginComponent,
     AutoFocusDirective,
     EntryComponent,
+    EntryViewComponent,
+    EntryPostComponent,
   ]
 })
 
