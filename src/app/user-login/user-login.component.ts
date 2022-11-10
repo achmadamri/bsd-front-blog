@@ -54,6 +54,10 @@ export class UserLoginComponent implements OnInit {
     this.router.navigate(['/user-add']);
   }
 
+  view() {
+    this.router.navigate(['/entry-view']);
+  }
+
   login() {
     this.clicked = !this.clicked;
 
