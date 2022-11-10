@@ -38,103 +38,12 @@ export class UserEditComponent implements OnInit {
     private userService: UserService,
   ) { }
 
-  checkAddAllToggle = false;
-  checkAddAll() {
-    this.checkAddAllToggle = !this.checkAddAllToggle;
-
-    this.userEditRequest.lstViewUserMenu.forEach((element) => {
-      element.tbumAdd = this.checkAddAllToggle == true ? 1 : 0;
-    });
-  }
-
-  checkEditAllToggle = false;
-  checkEditAll() {
-    this.checkEditAllToggle = !this.checkEditAllToggle;
-
-    this.userEditRequest.lstViewUserMenu.forEach((element) => {
-      element.tbumEdit = this.checkEditAllToggle == true ? 1 : 0;
-    });
-  }
-
-  checkDeleteAllToggle = false;
-  checkDeleteAll() {
-    this.checkDeleteAllToggle = !this.checkDeleteAllToggle;
-
-    this.userEditRequest.lstViewUserMenu.forEach((element) => {
-      element.tbumDelete = this.checkDeleteAllToggle == true ? 1 : 0;
-    });
-  }
-
-  checkViewAllToggle = false;
-  checkViewAll() {
-    this.checkViewAllToggle = !this.checkViewAllToggle;
-
-    this.userEditRequest.lstViewUserMenu.forEach((element) => {
-      element.tbumView = this.checkViewAllToggle == true ? 1 : 0;
-    });
-  }
-
   ngOnInit() {
     this.titleService.setTitle('Administrator - User Edit');
-
-    this.role = ['ADMIN', 'PRINCIPAL', 'DISTRIBUTOR', 'SUBDIST', 'GROSIR', 'MOTORIST'];
-
-    this.route.paramMap.subscribe(params => {
-      this.userGetRequest.tbuId = params.get('tbuId') == null ? '0' : params.get('tbuId');
-
-      this.userService.getUser(this.userGetRequest)
-        .subscribe(
-          successResponse => {
-            this.userGetResponse = successResponse;
-
-            this.userEditRequest.tbUser = this.userGetResponse.tbUser;
-            this.userEditRequest.tbUser.tbuPassword = '';
-            this.userEditRequest.tbUser.tbuPasswordConfirm = '';
-            this.userEditRequest.lstViewUserMenu = this.userGetResponse.lstViewUserMenu;
-            
-          },
-          errorResponse => {
-            this.util.showNotification('danger', 'top', 'center', errorResponse.error.error + '<br>' + errorResponse.error.message);
-            this.router.navigate(['/user-login']);
-          }
-        );
-    });
   }
 
   save() {
     this.clicked = !this.clicked;
-
-    this.userEditRequest.lstViewUserMenu.forEach((element) => {
-      if (element.tbumView) {
-        element.tbumView = 1;
-      } else {
-        element.tbumView = 0;
-      }
-
-      if (element.tbumEdit) {
-        element.tbumEdit = 1;
-      } else {
-        element.tbumEdit = 0;
-      }
-
-      if (element.tbumEdit) {
-        element.tbumEdit = 1;
-      } else {
-        element.tbumEdit = 0;
-      }
-      
-      if (element.tbumDelete) {
-        element.tbumDelete = 1;
-      } else {
-        element.tbumDelete = 0;
-      }
-      
-      if (element.tbumAdd) {
-        element.tbumAdd = 1;
-      } else {
-        element.tbumAdd = 0;
-      }
-    });
 
     if (this.userEditRequest.tbUser.tbuPassword == this.userEditRequest.tbUser.tbuPasswordConfirm) {
       this.userService.postUserEdit(this.userEditRequest)

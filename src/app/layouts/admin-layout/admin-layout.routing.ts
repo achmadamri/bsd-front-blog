@@ -17,7 +17,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                       component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'user-profile',                    component: UserProfileComponent, canActivate: [AuthGuard] },
     { path: 'user',                            component: UserComponent, canActivate: [AuthGuard] },
-    { path: 'user-add',                        component: UserAddComponent, canActivate: [AuthGuard] },    
+    { path: 'user-add',                        component: UserAddComponent },    
     { path: 'user-edit/:tbuId',                component: UserEditComponent, canActivate: [AuthGuard] },
     { path: 'user-edit',                       component: UserEditComponent, canActivate: [AuthGuard] },
     { path: 'user-login',                      component: UserLoginComponent },

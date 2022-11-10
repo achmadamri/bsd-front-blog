@@ -71,50 +71,10 @@ export class UserAddComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Administrator - User Add');
-
-    this.role = ['ADMIN', 'PRINCIPAL', 'DISTRIBUTOR', 'SUBDIST', 'GROSIR', 'MOTORIST'];
-
-    this.userService.getUserMenuList('', this.getUserMenuListRequest)
-      .subscribe(
-        successResponse => {
-          this.getUserMenuListResponse = successResponse;
-          this.userAddRequest.lstViewUserMenu = this.getUserMenuListResponse.lstViewUserMenu;
-        },
-        errorResponse => {
-          this.util.showNotification('danger', 'top', 'center', errorResponse.error.error + '<br>' + errorResponse.error.message);
-          this.router.navigate(['/user-login']);
-        }
-      );
   }
 
   save() {
     this.clicked = !this.clicked;
-
-    this.userAddRequest.lstViewUserMenu.forEach((element) => {
-      if (element.tbumView) {
-        element.tbumView = 1;
-      } else {
-        element.tbumView = 0;
-      }
-
-      if (element.tbumAdd) {
-        element.tbumAdd = 1;
-      } else {
-        element.tbumAdd = 0;
-      }
-
-      if (element.tbumEdit) {
-        element.tbumEdit = 1;
-      } else {
-        element.tbumEdit = 0;
-      }
-      
-      if (element.tbumDelete) {
-        element.tbumDelete = 1;
-      } else {
-        element.tbumDelete = 0;
-      }
-    });
 
     if (this.userAddRequest.tbUser.tbuPassword == this.userAddRequest.tbUser.tbuPasswordConfirm) {
       this.userService.postUserAdd(this.userAddRequest)
