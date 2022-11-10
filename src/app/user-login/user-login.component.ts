@@ -1,5 +1,6 @@
 import { Component, isDevMode, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { UserService } from 'app/services/user/user.service';
 import { UserGetRequest } from 'app/services/user/usergetrequest';
 import { UserGetResponse } from 'app/services/user/usergetresponse';
@@ -25,6 +26,7 @@ export class UserLoginComponent implements OnInit {
   userGetResponse: UserGetResponse = new UserGetResponse();
 
   constructor(    
+    private router: Router,
     private titleService: Title,
     private authService: AuthService,
     private userService: UserService
@@ -46,6 +48,10 @@ export class UserLoginComponent implements OnInit {
         this.util.setLonglat(this.longitude, this.latitude);
       });
     }
+  }
+
+  register() {
+    this.router.navigate(['/user-add']);
   }
 
   login() {

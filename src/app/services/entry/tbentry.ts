@@ -7,4 +7,5 @@ export class TbEntry {
     tbeTitle: string;
     tbeUpdateDate: string;
     tbeUpdateId: number;
+    tbeCounter: number;
 }
