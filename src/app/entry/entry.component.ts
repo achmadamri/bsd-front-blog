@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { GetUserListRequest } from 'app/services/user/getuserlistrequest';
-import { GetUserListResponse } from 'app/services/user/getuserlistresponse';
-import { UserService } from 'app/services/user/user.service';
+import { EntryService } from 'app/services/entry/entry.service';
+import { GetEntryListRequest } from 'app/services/entry/getentrylistrequest';
+import { GetEntryListResponse } from 'app/services/entry/getentrylistresponse';
 import { Util } from 'app/util';
 
 @Component({
@@ -20,35 +20,35 @@ export class EntryComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageEvent: PageEvent;
   pageDisabled: boolean = false;
-  getUserListRequest: GetUserListRequest = new GetUserListRequest();
-  getUserListResponse: GetUserListResponse = new GetUserListResponse();
-  tbuEmail = "";
-  tbuFirstname = "";
-  tbuLastname = "";
+  getEntryListRequest: GetEntryListRequest = new GetEntryListRequest();
+  getEntryListResponse: GetEntryListResponse = new GetEntryListResponse();
+  tbeTitle = "";
+  tbeChunk = "";
+  tbeContent = "";
 
   constructor(
     private router: Router,
     private titleService: Title,
-    private userService: UserService,
+    private entryService: EntryService,
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('Administrator - User');
+    this.titleService.setTitle('Entry - Entry');
       
-    this.getUserList(null);
+    this.getEntryList(null);
   }
 
-  getUserList(pageEvent: PageEvent) {
+  getEntryList(pageEvent: PageEvent) {
     this.clicked = !this.clicked;
 
-    this.userService.getUserList(this.tbuEmail, this.tbuFirstname, this.tbuLastname, pageEvent != null ? pageEvent.length : this.length, pageEvent != null ? pageEvent.pageSize : this.pageSize, pageEvent != null ? pageEvent.pageIndex : this.pageIndex, this.getUserListRequest)
+    this.entryService.getEntryList(this.tbeTitle, this.tbeChunk, this.tbeContent, pageEvent != null ? pageEvent.length : this.length, pageEvent != null ? pageEvent.pageSize : this.pageSize, pageEvent != null ? pageEvent.pageIndex : this.pageIndex, this.getEntryListRequest)
       .subscribe(
         successResponse => {
           this.clicked = !this.clicked;
 
-          this.getUserListResponse = successResponse;
+          this.getEntryListResponse = successResponse;
 
-          this.length = this.getUserListResponse.length;
+          this.length = this.getEntryListResponse.length;
 
           if (pageEvent != null) {
             this.length = pageEvent.length;
@@ -59,17 +59,17 @@ export class EntryComponent implements OnInit {
         errorResponse => {
           this.clicked = !this.clicked;
           
-          this.getUserListResponse = new GetUserListResponse();
+          this.getEntryListResponse = new GetEntryListResponse();
         }
       );
   }
 
   getPage(pageEvent: PageEvent) {
-    this.getUserList(pageEvent);
+    this.getEntryList(pageEvent);
   }
 
-  UserAdd() {
-    this.router.navigate(['/user-add']);
+  EntryAdd() {
+    this.router.navigate(['/entry-add']);
   }
 
 }

@@ -8,6 +8,7 @@ import { UserComponent } from 'app/user/user.component';
 import { UserAddComponent } from 'app/user-add/user-add.component';
 import { UserEditComponent } from 'app/user-edit/user-edit.component';
 import { EntryComponent } from 'app/entry/entry.component';
+import { EntryAddComponent } from 'app/entry-add/entry-add.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                       component: DashboardComponent, canActivate: [AuthGuard] },
@@ -18,4 +19,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-edit',                       component: UserEditComponent, canActivate: [AuthGuard] },
     { path: 'user-login',                      component: UserLoginComponent },
     { path: 'entry',                           component: EntryComponent },
+    { path: 'entry-add',                       component: EntryAddComponent, canActivate: [AuthGuard] },    
 ];
