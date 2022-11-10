@@ -33,6 +33,8 @@ export class UserLoginComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Administrator - Login');
     this.setCurrentLocation();
+    // this.authGenerateRequest.tbaEmail = 'admin@mail.com';
+    // this.authGenerateRequest.tbaPassword = '123';
   }
 
   setCurrentLocation() {

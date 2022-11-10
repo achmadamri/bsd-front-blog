@@ -10,10 +10,10 @@ import { GetEntryListResponse } from 'app/services/entry/getentrylistresponse';
 import { Util } from 'app/util';
 
 @Component({
-  selector: 'app-entry',
-  templateUrl: './entry.component.html'
+  selector: 'app-entry-view',
+  templateUrl: './entry-view.component.html'
 })
-export class EntryComponent implements OnInit {
+export class EntryViewComponent implements OnInit {
   clicked = false;
   util: Util = new Util();
   length = 100;
@@ -36,16 +36,14 @@ export class EntryComponent implements OnInit {
     private entryService: EntryService,
   ) { }
 
-  ngOnInit() {
-    this.titleService.setTitle('Entry - Entry');
-      
+  ngOnInit() {      
     this.getEntryList(null);
   }
 
   getEntryList(pageEvent: PageEvent) {
     this.clicked = !this.clicked;
 
-    this.entryService.getEntryList(this.tbeTitle, this.tbeChunk, this.tbeContent, pageEvent != null ? pageEvent.length : this.length, pageEvent != null ? pageEvent.pageSize : this.pageSize, pageEvent != null ? pageEvent.pageIndex : this.pageIndex, this.getEntryListRequest)
+    this.entryService.getEntryView(this.tbeTitle, this.tbeChunk, this.tbeContent, pageEvent != null ? pageEvent.length : this.length, pageEvent != null ? pageEvent.pageSize : this.pageSize, pageEvent != null ? pageEvent.pageIndex : this.pageIndex, this.getEntryListRequest)
       .subscribe(
         successResponse => {
           this.clicked = !this.clicked;

@@ -32,6 +32,7 @@ export class UserService {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
 
+    userAddRequest.tbUser.tbuRole = 'ADMIN';
     userAddRequest.email = localStorage.getItem('email');
     userAddRequest.token = localStorage.getItem('token');
     userAddRequest.requestId = this.util.randomString(10);
