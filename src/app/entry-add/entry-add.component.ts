@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { EntryAddRequest } from 'app/services/entry/entryaddrequest';
 import { EntryAddResponse } from 'app/services/entry/entryaddresponse';
 import { EntryService } from 'app/services/entry/entry.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export interface Country {
   value: string;
@@ -13,7 +14,8 @@ export interface Country {
 
 @Component({
   selector: 'app-entry-add',
-  templateUrl: './entry-add.component.html'
+  templateUrl: './entry-add.component.html',
+  styleUrls: ['./entry-add.component.css']
 })
 export class EntryAddComponent implements OnInit {
   clicked = false;
@@ -21,11 +23,12 @@ export class EntryAddComponent implements OnInit {
   entryAddRequest: EntryAddRequest = new EntryAddRequest();
   entryAddResponse: EntryAddResponse = new EntryAddResponse();
   role: string[];
+  editor = ClassicEditor;
 
   constructor(
     private router: Router,
     private titleService: Title,
-    private EntryService: EntryService,
+    private entryService: EntryService,
   ) { }
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class EntryAddComponent implements OnInit {
   save() {
     this.clicked = !this.clicked;
 
-    this.EntryService.postEntryAdd(this.entryAddRequest)
+    this.entryService.postEntryAdd(this.entryAddRequest)
     .subscribe(
       successResponse => {
         this.clicked = !this.clicked;
@@ -45,6 +48,7 @@ export class EntryAddComponent implements OnInit {
         this.util.showNotification('info', 'top', 'center', this.entryAddResponse.message);
 
         this.entryAddRequest = new EntryAddRequest();
+        this.entryAddRequest.tbEntry.tbeContent = '';
       },
       errorResponse => {
         this.clicked = !this.clicked;

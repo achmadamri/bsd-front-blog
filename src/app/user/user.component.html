@@ -31,7 +31,6 @@
                 <tr>
                   <th scope="col">No</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Role</th>
                   <th scope="col">First Name</th>
                   <th scope="col">Last Name</th>
                   <th scope="col">Last Login</th>
@@ -42,7 +41,6 @@
                 <tr *ngFor="let tbUser of getUserListResponse.lstTbUser; let i = index">
                   <td>{{i + 1 + (pageSize * pageIndex)}}</td>                  
                   <td>{{tbUser.tbuEmail}}</td>
-                  <td>{{tbUser.tbuRole}}</td>
                   <td>{{tbUser.tbuFirstname}}</td>
                   <td>{{tbUser.tbuLastname}}</td>
                   <td>{{tbUser.tbuUpdateDate | date: 'M/dd/yyyy HH:mm:ss'}}</td>

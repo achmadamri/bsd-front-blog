@@ -24,6 +24,8 @@ import { UserAddComponent } from 'app/user-add/user-add.component';
 import { UserEditComponent } from 'app/user-edit/user-edit.component';
 import { EntryComponent } from 'app/entry/entry.component';
 import { EntryAddComponent } from 'app/entry-add/entry-add.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EntryEditComponent } from 'app/entry-edit/entry-edit.component';
 
 @NgModule({
   imports: [
@@ -44,12 +46,14 @@ import { EntryAddComponent } from 'app/entry-add/entry-add.component';
     MatCheckboxModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
+    CKEditorModule,
   ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     UserAddComponent,
     EntryAddComponent,
+    EntryEditComponent,
     UserEditComponent,
     UserComponent,
     UserLoginComponent,

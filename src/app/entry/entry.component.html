@@ -16,11 +16,6 @@
               </div>
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Chunk" type="text" [(ngModel)]="tbeChunk" (keyup.enter)="getEntryList(null)">
-                </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field class="example-full-width">
                   <input matInput placeholder="Content" type="text" [(ngModel)]="tbeContent" (keyup.enter)="getEntryList(null)">
                 </mat-form-field>
               </div>
@@ -33,7 +28,6 @@
                   <th scope="col">Date</th>
                   <th scope="col">Email</th>
                   <th scope="col">Title</th>
-                  <th scope="col">Content</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -43,15 +37,15 @@
                   <td>{{viewUserEntry.tbeCreateDate | date: 'M/dd/yyyy HH:mm:ss'}}</td>
                   <td>{{viewUserEntry.tbuEmail}}</td>
                   <td>{{viewUserEntry.tbeTitle}}</td>
-                  <td>{{viewUserEntry.tbeContent.substring(0, 20)}}...</td>
                   <td>
                     <input type="button" style="padding: 2px 15px;" class="btn btn-warning" value="view" [disabled]="clicked" [routerLink]="['/entry-edit', viewUserEntry.tbeId]"/>
+                    <input type="button" style="padding: 2px 15px;" class="btn btn-danger" value="delete" [disabled]="clicked" (click)="delete(viewUserEntry.tbeId);"/>
                   </td>
                 </tr>
               </tbody>
             </table>
             <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="getPage($event)" [disabled]="clicked"></mat-paginator>
-            <input type="button" class="btn btn-success pull-right" value="Add" [disabled]="clicked" (click)="EntryAdd();" />
+            <input type="button" class="btn btn-success pull-right" value="Add" [disabled]="clicked" (click)="entryAdd();" />
           </div>
         </div>
       </div>
